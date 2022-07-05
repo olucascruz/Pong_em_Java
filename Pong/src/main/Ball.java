@@ -1,6 +1,7 @@
 package main;
 import java.awt.Graphics;
 import java.awt.Color;
+import java.lang.Math;
 
 public class Ball {
     int positionX = 500;
@@ -30,10 +31,12 @@ public class Ball {
 
     public void move(){
         
-        
+        System.out.println(speedX);
         if(collidePlayer){
             speedX *= -1;
-            speedX++;
+            if(Math.abs(speedX) < 16){
+                speedX++;
+            }
             if(effectUp){
                 speedY++;
                 speed *= -1;
@@ -46,8 +49,10 @@ public class Ball {
             }
             collidePlayer = false;
         }else if(collideEnemy){
-            speedX += 1;
             speedX *= -1;
+            if(Math.abs(speedX) < 16){
+                speedX--;
+            }
             if(effectUp){
                 speedY++;
                 speed *= -1;
